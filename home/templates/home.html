@@ -20,7 +20,8 @@
                 <div class="col-lg-8 align-self-baseline">
                     <h2 class="text-white mb-5">Trouvez un vétérinaire proche de chez vous et connectez-vous pour
                         gérer vos rendez-vous ! </h2>
-                    <form class="d-flex" id="main-search" action="" method="POST">
+{#                    <form class="d-flex" id="main-search" action="" method="POST">#}
+                    <form class="d-flex" id="main-search">
                         {% csrf_token %}
                         <div class="input-group mb-3">
                             <input type="search" id="search-input" name="search-address" class="form-control" placeholder="Tappez le nom de votre ville" aria-label="Search" aria-describedby="button-addon2">

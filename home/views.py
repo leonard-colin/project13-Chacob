@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib import messages
+from django.http import JsonResponse
 
 from .map import OpenStreetMap
 
@@ -14,6 +15,7 @@ def home_view(request):
 
     osmap = OpenStreetMap()
     search_address = request.POST.get('search-address')
+    print(search_address)
 
     if search_address:
         search_address = search_address.capitalize()
@@ -23,8 +25,12 @@ def home_view(request):
         except (IndexError, ValueError, TypeError):
             message = messages.error(
                 request, "Nous n'avons pas pu trouver de résultat. Réessayez")
-            return render(request, 'home.html', {'message': message})
-        return render(request, 'home.html', {'osmap': osmap})
+            response = JsonResponse({'message': message})
+            print(response)
+            return response
+        response = JsonResponse({'osmap': osmap})
+        print(response)
+        return response
     return render(request, 'home.html')
 
 
